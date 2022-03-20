@@ -1,0 +1,65 @@
+{
+  "configurations": {
+    "CodeLLDB": {
+      "adapter": "CodeLLDB",
+      "filetypes": [
+        "//Use for c++"
+      ],
+      "variables": {
+        "BUILDME": {
+          "shell": "g++ -o ${workspaceRoot}/${fileBasenameNoExtension} -g -std=c++17 ${workspaceRoot}/${fileBasename}"
+        }
+      },
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/${fileBasenameNoExtension}",
+        "stopOnEntry": false
+      }
+    },
+    "cpptools-gdb": {
+      "adapter": "vscode-cpptools",
+      "filetypes": [
+        "cpp",
+        "c",
+        "objc",
+        "rust"
+      ],
+      "variables": {
+        "BUILDME": {
+          "shell": "g++ -o ${workspaceRoot}/${fileBasenameNoExtension} -g -std=c++17 ${workspaceRoot}/${fileBasename}"
+        }
+      },
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/${fileBasenameNoExtension}",
+        "stopAtEntry": true,
+        "MIMode": "gdb",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ]
+      }
+    },
+    "cpptools-lldb": {
+      "adapter": "vscode-cpptools",
+      "filetypes": [
+        "//Can't Use"
+      ],
+      "variables": {
+        "BUILDME": {
+          "shell": "g++ -o ${workspaceRoot}/${fileBasenameNoExtension} -g -std=c++17 ${workspaceRoot}/${fileBasename}"
+        }
+      },
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/${fileBasenameNoExtension}",
+        "stopAtEntry": true,
+        "MIMode": "lldb",
+        "MIDebuggerPath": "/usr/bin/lldb-mi-9"
+      }
+    }
+  }
+}

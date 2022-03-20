@@ -1,0 +1,7 @@
+plugged/
+autoload/plug.vim.old
+.netrwhist
+vimspector-config/gadgets
+configurations/configurations
+*.swp
+
