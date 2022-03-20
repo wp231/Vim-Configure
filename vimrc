@@ -141,7 +141,7 @@ function TabPython()
   execute('%retab 4')
 endfunction
 
-autocmd FileType javascript,html,css,xml,json,c,cpp,vim execute('call Tab2()')
+autocmd FileType javascript,html,css,xml,json,c,cpp,vim,markdown execute('call Tab2()')
 function Tab2()
   set tabstop=2
   set softtabstop=2
