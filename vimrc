@@ -99,7 +99,8 @@ set noeb
 set ignorecase
 " 取消自動註釋
 set formatoptions-=ro 
-autocmd BufRead,BufNewFile * if @% == 'vimrc' | set formatoptions-=ro | endif
+" autocmd BufRead,BufNewFile * if @% == 'vimrc' | set formatoptions-=ro | endif
+autocmd BufRead,BufNewFile * set formatoptions-=ro
 " 移動時保留行
 set scrolloff=5
 
@@ -837,7 +838,8 @@ let g:vimspector_sign_priority = {
 let g:vimspector_sidebar_width = 39
 let g:vimspector_bottombar_height = 10
 let g:vimspector_code_minwidth = 82
-let g:vimspector_terminal_maxwidth = 35
+" let g:vimspector_terminal_maxwidth = 35
+let g:vimspector_terminal_maxwidth = 54
 let g:vimspector_terminal_minwidth = 10
 
 " let g:vimspector_base_dir = expand( '$HOME/.vim/vimspector-config' )
