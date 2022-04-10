@@ -347,6 +347,18 @@ let g:expand_region_text_objects = {
 """""""""""""""
 " vim-sandwich
 """""""""""""""
+
+" 可視模式加入括號
+vmap ( sa(%
+vmap ) sa(%%l
+vmap [ sa[%
+vmap ] sa[%%l
+vmap { sa{%
+vmap } sa{%%l
+vmap < sa<hh
+vmap " sa"hh
+vmap ' sa'hh
+
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 " 插入括號自動 Tab
 let g:sandwich#recipes += [
