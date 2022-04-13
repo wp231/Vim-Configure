@@ -3,42 +3,43 @@
 <!-- vim-markdown-toc GFM -->
 
 * [環境配置](#環境配置)
-    - [必備軟體安裝](#必備軟體安裝)
-        + [coc-nvim](#coc-nvim)
-    - [新增 Nerd Fonts](#新增-nerd-fonts)
+  - [必備軟體安裝](#必備軟體安裝)
+    + [coc-nvim](#coc-nvim)
+  - [新增 Nerd Fonts](#新增-nerd-fonts)
 * [鍵位](#鍵位)
-    - [移動](#移動)
-        + [快速移動](#快速移動)
-        + [插入模式移動](#插入模式移動)
-        + [命令模式移動](#命令模式移動)
-        + [vim-easymotion](#vim-easymotion)
-    - [保存 / 退出](#保存--退出)
-    - [剪貼](#剪貼)
-        + [剪下](#剪下)
-        + [系統剪貼簿](#系統剪貼簿)
-    - [分割視窗](#分割視窗)
-    - [視窗操作](#視窗操作)
-    - [文字編輯](#文字編輯)
-        + [wildfire.vim](#wildfirevim)
-        + [vim-sandwich](#vim-sandwich)
-        + [nerdcommenter](#nerdcommenter)
-    - [多光標模式](#多光標模式)
-        + [vim-visual-multi](#vim-visual-multi)
-    - [程式碼補全](#程式碼補全)
-        + [coc-nvim](#coc-nvim-1)
-        + [coc-snippets](#coc-snippets)
-    - [翻譯](#翻譯)
-        + [coc-translator](#coc-translator)
-    - [代碼除錯](#代碼除錯)
-        + [vimspector](#vimspector)
-    - [Markdown 文件](#markdown-文件)
-        + [markdown-snippets](#markdown-snippets)
-        + [vim-table-mode](#vim-table-mode)
-        + [vim-markdown-toc](#vim-markdown-toc)
-        + [coc-markdown-preview-enhanced](#coc-markdown-preview-enhanced)
-    - [版本管理](#版本管理)
-        + [agit.vim](#agitvim)
-        + [undotree](#undotree)
+  - [移動](#移動)
+    + [快速移動](#快速移動)
+    + [插入模式移動](#插入模式移動)
+    + [命令模式移動](#命令模式移動)
+    + [vim-easymotion](#vim-easymotion)
+  - [保存 / 退出](#保存--退出)
+  - [剪貼](#剪貼)
+    + [剪下](#剪下)
+    + [系統剪貼簿](#系統剪貼簿)
+  - [分割視窗](#分割視窗)
+  - [視窗操作](#視窗操作)
+  - [文字編輯](#文字編輯)
+    + [wildfire.vim](#wildfirevim)
+    + [vim-sandwich](#vim-sandwich)
+    + [auto-pairs](#auto-pairs)
+    + [nerdcommenter](#nerdcommenter)
+  - [多光標模式](#多光標模式)
+    + [vim-visual-multi](#vim-visual-multi)
+  - [程式碼補全](#程式碼補全)
+    + [coc-nvim](#coc-nvim-1)
+    + [coc-snippets](#coc-snippets)
+  - [翻譯](#翻譯)
+    + [coc-translator](#coc-translator)
+  - [代碼除錯](#代碼除錯)
+    + [vimspector](#vimspector)
+  - [Markdown 文件](#markdown-文件)
+    + [markdown-snippets](#markdown-snippets)
+    + [vim-table-mode](#vim-table-mode)
+    + [vim-markdown-toc](#vim-markdown-toc)
+    + [coc-markdown-preview-enhanced](#coc-markdown-preview-enhanced)
+  - [版本管理](#版本管理)
+    + [agit.vim](#agitvim)
+    + [undotree](#undotree)
 
 <!-- vim-markdown-toc -->
 ---------------
@@ -212,6 +213,15 @@ npm install -g npm
 | `sa`   | 添加括號 |
 | `sd`   | 刪除括號 |
 | `sr`   | 替換括號 |
+
+#### [auto-pairs](https://github.com/jiangmiao/auto-pairs) 
+- 自動添加括號
+
+| 快捷鍵     | 功能           |
+|------------|----------------|
+| `Ctrl + e` | 快速移動括號   |
+| `Ctrl + b` | 恢復快速跳轉   |
+| `Ctrl + n` | 跳轉到下個括號 |
 
 #### [nerdcommenter](https://github.com/preservim/nerdcommenter) 
 - 自動註釋

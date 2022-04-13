@@ -20,6 +20,8 @@ Plug 'gcmt/wildfire.vim'
 Plug 'terryma/vim-expand-region'
 " 添加括號
 Plug 'machakann/vim-sandwich'
+" 自動添加括號
+Plug 'jiangmiao/auto-pairs'
 " 多光標
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " 搜尋加強
@@ -251,25 +253,25 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 """""""""""""
 " 添加檔案頭
 """""""""""""
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java execute("call SetTitle()")
-
-func SetTitle()
-  if &filetype == 'sh'
-    call append(line("."), "#!/bin/sh")
-    call append(line(".")+1, "")
-  endif
-  if &filetype == 'cpp'
-    call append(line("."), "#include<iostream>")
-    call append(line(".")+1, "using namespace std;")
-    call append(line(".")+2, "")
-  endif
-  if &filetype == 'c'
-    call append(line("."), "#include<stdio.h>")
-    call append(line(".")+1, "")
-  endif
-   
-  autocmd BufNewFile * normal G
-endfunc
+" autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java execute("call SetTitle()")
+"
+" func SetTitle()
+"   if &filetype == 'sh'
+"     call append(line("."), "#!/bin/sh")
+"     call append(line(".")+1, "")
+"   endif
+"   if &filetype == 'cpp'
+"     call append(line("."), "#include<iostream>")
+"     call append(line(".")+1, "using namespace std;")
+"     call append(line(".")+2, "")
+"   endif
+"   if &filetype == 'c'
+"     call append(line("."), "#include<stdio.h>")
+"     call append(line(".")+1, "")
+"   endif
+"
+"   autocmd BufNewFile * normal G
+" endfunc
 
 """""""""
 " vimade
@@ -377,6 +379,32 @@ let g:sandwich#recipes += [
   \     'command'     : ["'[,']normal! <<"],
   \   }
   \ ]
+
+"""""""""""""
+" auto-pairs
+"""""""""""""
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
+autocmd FileType markdown let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```'}
+autocmd FileType html,xml let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "<":">"}
+autocmd FileType vim let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "<":">"}
+
+" 退格鍵刪除
+let g:AutoPairsMapBS = 1
+" 括號回車鍵自動換行
+let g:AutoPairsMapCR = 1
+" 括號內插入空格
+let g:AutoPairsMapSpace = 1
+" 快速移動模式
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsMapCh = 0
+let g:AutoPairsMultilineClose = 1
+
+
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsMoveCharacter = ''
+let g:AutoPairsShortcutFastWrap = '<C-e>'
+let g:AutoPairsShortcutJump = '<C-n>'
+let g:AutoPairsShortcutBackInsert = '<C-b>'
 
 """""""""""""""""""
 " vim-visual-multi
