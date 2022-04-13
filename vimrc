@@ -349,15 +349,15 @@ let g:expand_region_text_objects = {
 """""""""""""""
 
 " 可視模式加入括號
-vmap ( sa(%
-vmap ) sa(%%l
-vmap [ sa[%
-vmap ] sa[%%l
-vmap { sa{%
-vmap } sa{%%l
-vmap < sa<hh
-vmap " sa"hh
-vmap ' sa'hh
+vmap ( sa(h
+vmap ) sa(h%l
+vmap [ sa[h
+vmap ] sa[h%l
+vmap { sa{h
+vmap } sa{h%l
+vmap < sa<h
+vmap " sa"h
+vmap ' sa'h
 
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 " 插入括號自動 Tab
