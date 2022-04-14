@@ -57,6 +57,12 @@ apt install -y git pip npm nodejs gdb
 npm install -g n
 n install stable
 ```
+
+- [bash-language-server](https://github.com/bash-lsp/bash-language-server)
+```shell
+npm install -g bash-language-server
+```
+
 - 更新 npm
 
 ```shell
@@ -145,8 +151,8 @@ npm install -g npm
 
 | 快捷鍵     | 功能         |
 |------------|--------------|
-| `Ctrl` `c` | 複製到剪貼簿 |
-| `Ctrl` `p` | 從剪貼簿貼上 |
+| `Y`        | 複製到剪貼簿 |
+| `Ctrl + p` | 從剪貼簿貼上 |
 
 ### 分割視窗
 
@@ -217,11 +223,12 @@ npm install -g npm
 #### [auto-pairs](https://github.com/jiangmiao/auto-pairs) 
 - 自動添加括號
 
-| 快捷鍵     | 功能           |
-|------------|----------------|
-| `Ctrl + e` | 快速移動括號   |
-| `Ctrl + b` | 恢復快速跳轉   |
-| `Ctrl + n` | 跳轉到下個括號 |
+| 快捷鍵(插入模式) | 功能           |
+|------------------|----------------|
+| `Ctrl + l`       | 跳轉到下個括號 |
+| `Ctrl + o`       | 快速移動括號   |
+| `Ctrl + u`       | 恢復快速跳轉   |
+| `Ctrl + h`       | 刪除成對括號   |
 
 #### [nerdcommenter](https://github.com/preservim/nerdcommenter) 
 - 自動註釋
@@ -268,8 +275,7 @@ npm install -g npm
 | `Leader` `H`  | 顯示幫助文檔           |
 | `Leader` `f`  | 格式化程式碼           |
 | `Leader` `rn` | 重命名變數             |
-| `Ctrl + l`    | 觸發 Snippet           |
-| `Ctrl + j`    | 切換下個修改點         |
+| `Ctrl + j`    | 觸發 / 切換下個修改點  |
 | `Ctrl + k`    | 切換上個修改點         |
 | `Leader` `x`  | 添加選中片段到 Snippet |
 

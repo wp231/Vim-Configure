@@ -216,8 +216,10 @@ nnoremap < <<
 
 " Tab 窗口控制
 nnoremap tn :tabedit<CR>
-nnoremap tj :tabnext<CR>
-nnoremap tk :tabNext<CR>
+" nnoremap tj :tabnext<CR>
+" nnoremap tk :tabNext<CR>
+nmap tj <Plug>AirlineSelectNextTab
+nmap tk <Plug>AirlineSelectPrevTab
 nnoremap tc :tabclose<CR>
 
 " 命令模式
@@ -241,7 +243,7 @@ vnoremap J 5j
 vnoremap K 5k
 
 " 系統剪貼簿
-vnoremap <C-c> "+y
+vnoremap Y "+y
 
 inoremap <C-p> <Esc>"+pa
 nnoremap <C-p> "+p
@@ -357,7 +359,7 @@ vmap [ sa[h
 vmap ] sa[h%l
 vmap { sa{h
 vmap } sa{h%l
-vmap < sa<h
+" vmap < sa<h
 vmap " sa"h
 vmap ' sa'h
 
@@ -396,15 +398,20 @@ let g:AutoPairsMapCR = 1
 let g:AutoPairsMapSpace = 1
 " 快速移動模式
 let g:AutoPairsFlyMode = 1
+
+" <C-h>刪除成對括號(僅限內部無字符時)
 let g:AutoPairsMapCh = 0
 let g:AutoPairsMultilineClose = 1
 
 
 let g:AutoPairsShortcutToggle = ''
 let g:AutoPairsMoveCharacter = ''
-let g:AutoPairsShortcutFastWrap = '<C-e>'
-let g:AutoPairsShortcutJump = '<C-n>'
-let g:AutoPairsShortcutBackInsert = '<C-b>'
+let g:AutoPairsShortcutFastWrap = '<C-o>'
+let g:AutoPairsShortcutJump = '<C-l>'
+let g:AutoPairsShortcutBackInsert = '<C-u>'
+
+" 刪除成對括號
+imap <C-h> <Esc>sdbi
 
 """""""""""""""""""
 " vim-visual-multi
@@ -697,7 +704,6 @@ endif
 """""""""""""""
 " 觸發 snippets
 " imap <C-l> <Plug>(coc-snippets-expand)
-imap <C-l> <Right>
 
 " 選擇文字做為佔位符
 vmap <C-j> <Plug>(coc-snippets-select)
