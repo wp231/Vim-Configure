@@ -5,6 +5,7 @@
 * [環境配置](#環境配置)
   - [必備軟體安裝](#必備軟體安裝)
     + [coc-nvim](#coc-nvim)
+    + [格式化](#格式化)
   - [新增 Nerd Fonts](#新增-nerd-fonts)
 * [鍵位](#鍵位)
   - [移動](#移動)
@@ -18,6 +19,8 @@
     + [系統剪貼簿](#系統剪貼簿)
   - [分割視窗](#分割視窗)
   - [視窗操作](#視窗操作)
+  - [文件管理](#文件管理)
+    + [coc-explorer](#coc-explorer)
   - [文字編輯](#文字編輯)
     + [vim-expand-region](#vim-expand-region)
     + [vim-sandwich](#vim-sandwich)
@@ -63,8 +66,15 @@ n install stable
 ```
 
 - [bash-language-server](https://github.com/bash-lsp/bash-language-server)
+
 ```shell
 npm install -g bash-language-server
+```
+
+- ccls
+
+```shell
+apt install -y ccls
 ```
 
 - 更新 npm
@@ -72,11 +82,19 @@ npm install -g bash-language-server
 ```shell
 npm install -g npm
 ```
+
 <!-- #### vim-instant-markdown -->
 <!--  -->
 <!-- ```shell -->
 <!-- npm install -g instant-markdown-d -->
 <!-- ``` -->
+
+#### 格式化
+- clang-format
+
+```shell
+apt install -y clang-format
+```
 
 ### 新增 Nerd Fonts
 
@@ -206,6 +224,34 @@ npm install -g npm
 | `Leader` `8` | 切到第 8 個視窗 |
 | `Leader` `9` | 切到第 9 個視窗 |
 
+### 文件管理
+#### [coc-explorer](https://github.com/weirongxu/coc-explorer) 
+- 檔案樹
+
+| 快捷鍵     | 功能                |
+|------------|---------------------|
+| `i`        | 選取                |
+| `l`        | 開啟文件/資料夾     |
+| `Enter`    | 進入資料夾/開啟文件 |
+| `I`        | 分割視窗後開啟      |
+| `o`        | 開啟/關閉資料夾     |
+| `O`        | 在新標籤中開啟文件  |
+| `n`        | 關閉當前所在資料夾  |
+| `h`        | 到上一層資料夾      |
+| `yp`       | 複製檔案名和路徑    |
+| `yn`       | 複製檔案名          |
+| `yy`       | 複製檔案            |
+| `dd`       | 剪下檔案            |
+| `pp`       | 貼上檔案            |
+| `dD`       | 刪除檔案            |
+| `a`        | 新增檔案            |
+| `A`        | 新增資料夾          |
+| `cw`       | 重新命名            |
+| `.` / `zh` | 切換隱藏資料夾顯示  |
+| `R`        | 刷新                |
+| `q`        | 退出                |
+| `?`        | 查看幫助            |
+
 ### 文字編輯
 #### [vim-expand-region](https://github.com/terryma/vim-expand-region)
 - 快速選取
@@ -285,6 +331,7 @@ npm install -g npm
 
 #### [vim-autoformat](https://github.com/vim-autoformat/vim-autoformat) 
 - 自動格式化
+
 | 快捷鍵 | 功能         |
 |--------|--------------|
 | `F7`   | 格式化程式碼 |
