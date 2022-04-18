@@ -19,7 +19,7 @@
   - [分割視窗](#分割視窗)
   - [視窗操作](#視窗操作)
   - [文字編輯](#文字編輯)
-    + [wildfire.vim](#wildfirevim)
+    + [vim-expand-region](#vim-expand-region)
     + [vim-sandwich](#vim-sandwich)
     + [auto-pairs](#auto-pairs)
     + [nerdcommenter](#nerdcommenter)
@@ -28,6 +28,7 @@
   - [程式碼補全](#程式碼補全)
     + [coc-nvim](#coc-nvim-1)
     + [coc-snippets](#coc-snippets)
+    + [vim-autoformat](#vim-autoformat)
   - [翻譯](#翻譯)
     + [coc-translator](#coc-translator)
   - [代碼除錯](#代碼除錯)
@@ -37,6 +38,9 @@
     + [vim-table-mode](#vim-table-mode)
     + [vim-markdown-toc](#vim-markdown-toc)
     + [coc-markdown-preview-enhanced](#coc-markdown-preview-enhanced)
+  - [標籤列表管理](#標籤列表管理)
+    + [vista.vim](#vistavim)
+    + [vim-signature](#vim-signature)
   - [版本管理](#版本管理)
     + [agit.vim](#agitvim)
     + [undotree](#undotree)
@@ -132,10 +136,11 @@ npm install -g npm
 
 ### 保存 / 退出
 
-| 快捷鍵 | 功能 |
-|--------|------|
-| `S`    | 保存 |
-| `Q`    | 退出 |
+| 快捷鍵       | 功能       |
+|--------------|------------|
+| `S`          | 保存       |
+| `Leader` `s` | 保存(sudo) |
+| `Q`          | 退出       |
 
 ### 剪貼
 
@@ -202,14 +207,13 @@ npm install -g npm
 | `Leader` `9` | 切到第 9 個視窗 |
 
 ### 文字編輯
-#### [wildfire.vim](https://github.com/gcmt/wildfire.vim)
+#### [vim-expand-region](https://github.com/terryma/vim-expand-region)
 - 快速選取
 
-| 快捷鍵       | 功能     |
-|--------------|----------|
-| `e`          | 擴張選取 |
-| `E`          | 縮小選取 |
-| `Leader` `s` | 快速選取 |
+| 快捷鍵 | 功能     |
+|--------|----------|
+| `e`    | 擴張選取 |
+| `E`    | 縮小選取 |
 
 #### [vim-sandwich](https://github.com/machakann/vim-sandwich) 
 - 括號修改
@@ -278,6 +282,12 @@ npm install -g npm
 | `Ctrl + j`    | 觸發 / 切換下個修改點  |
 | `Ctrl + k`    | 切換上個修改點         |
 | `Leader` `x`  | 添加選中片段到 Snippet |
+
+#### [vim-autoformat](https://github.com/vim-autoformat/vim-autoformat) 
+- 自動格式化
+| 快捷鍵 | 功能         |
+|--------|--------------|
+| `F7`   | 格式化程式碼 |
 
 ### 翻譯
 #### [coc-translator](https://github.com/voldikss/coc-translator) 
@@ -403,6 +413,26 @@ pip install debgpy
 |--------|------|
 | `F5`   | 啟動 |
 
+### 標籤列表管理
+#### [vista.vim](https://github.com/liuchengxu/vista.vim) 
+| 快捷鍵 | 功能            |
+|--------|-----------------|
+| `T`    | 開啟 Vista 視窗 |
+
+
+#### [vim-signature](https://github.com/kshenoy/vim-signature) 
+- 書籤
+
+| 快捷鍵          | 功能                 |
+|-----------------|----------------------|
+| `m` `<T>`       | 添加 `T` 標籤        |
+| `m` `Leader`    | 添加 / 刪除標籤      |
+| `m` `Backspace` | 刪除所有標籤         |
+| `m` `.`         | 切換到下個標籤       |
+| `m` `,`         | 切換到上個標籤       |
+| `M` `>`         | 照字母順序到下個標籤 |
+| `M` `<`         | 照字母順序到上個標籤 |
+| `m` `/`         | 顯示所有標籤         |
 
 ### 版本管理
 #### [agit.vim](https://github.com/cohama/agit.vim) 

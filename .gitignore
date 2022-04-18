@@ -4,4 +4,4 @@ autoload/plug.vim.old
 vimspector-config/gadgets
 configurations/configurations
 *.swp
-
+*.backup

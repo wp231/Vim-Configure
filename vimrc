@@ -16,7 +16,7 @@ Plug 'connorholyday/vim-snazzy'
 " 彩色括號
 Plug 'luochen1990/rainbow'
 " 括號選取
-Plug 'gcmt/wildfire.vim'
+" Plug 'gcmt/wildfire.vim'
 Plug 'terryma/vim-expand-region'
 " 添加括號
 Plug 'machakann/vim-sandwich'
@@ -49,32 +49,41 @@ Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] 
 Plug 'elzr/vim-json'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
-
+" 自動格式化
+Plug 'vim-autoformat/vim-autoformat'
 " Taglist
 Plug 'liuchengxu/vista.vim'
+Plug 'kshenoy/vim-signature'
 " Debug
 Plug 'puremourning/vimspector'
 " Plug 'skywind3000/asyncrun.vim'
 " Plug 'xianzhon/vim-code-runner'
-
+" 檔案管理
 " Plug 'preservim/nerdtree' |
 "   \ Plug 'Xuyuanp/nerdtree-git-plugin' |
 "   \ Plug 'tiagofumo/vim-nerdtree-syntax-highlight' |
 "   \ Plug 'ryanoasis/vim-devicons'
+" 自定義 il, ii ...
+Plug 'kana/vim-textobj-user' |
+      \ Plug 'kana/vim-textobj-indent' |
+      \ Plug 'kana/vim-textobj-entire'
+" sudo 權限
+Plug 'lambdalisue/suda.vim'
+
 call plug#end()
 
 let g:coc_global_extension = [
-  \ 'coc-json',
-  \ 'coc-marketplace',
-  \ 'coc-vimlsp',
-  \ 'coc-pyright',
-  \ 'coc-snippets',
-  \ 'coc-explorer',
-  \ 'coc-diagnostic',
-  \ 'coc-webview',
-  \ 'coc-markdown-preview-enhanced',
-  \ 'coc-translator'
-  \ ]
+      \ 'coc-json',
+      \ 'coc-marketplace',
+      \ 'coc-vimlsp',
+      \ 'coc-pyright',
+      \ 'coc-snippets',
+      \ 'coc-explorer',
+      \ 'coc-diagnostic',
+      \ 'coc-webview',
+      \ 'coc-markdown-preview-enhanced',
+      \ 'coc-translator'
+      \ ]
 
 set encoding=UTF-8
 " 字體設置
@@ -100,7 +109,7 @@ set noeb
 " 忽略大小寫
 set ignorecase
 " 取消自動註釋
-set formatoptions-=ro 
+set formatoptions-=ro
 " autocmd BufRead,BufNewFile * if @% == 'vimrc' | set formatoptions-=ro | endif
 autocmd BufRead,BufNewFile * set formatoptions-=ro
 " 移動時保留行
@@ -132,7 +141,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-autocmd FileType python execute('call TabPython()') 
+autocmd FileType python execute('call TabPython()')
 function TabPython()
   set tabstop=4
   set softtabstop=4
@@ -169,7 +178,7 @@ let g:monokai_gui_italic = 0
 set cursorline
 
 " 高亮顏色
-highlight CursorLine cterm=None ctermbg=241 ctermfg=0 
+highlight CursorLine cterm=None ctermbg=241 ctermfg=0
 
 let g:mapleader = ' '
 inoremap jk <ESC>
@@ -296,59 +305,110 @@ let g:rainbow_active = 1
 " 'separately': 针对文件类型(由&ft决定)作不同的配置,未被单独设置的文件类型使用*下的配置,值为0表示仅对该类型禁用插件,值为"default"表示使用针对该类型的默认兼容配置 (注意, 默认兼容配置可能随着该插件版本的更新而改变, 如果你不希望它改变, 那么你应该将它拷贝一份放到你的vimrc文件里).
 " 省略某个字段以使用默认设置
 let g:rainbow_conf = {
-  \ 'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-  \ 'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-  \ 'operators': '_,_',
-  \ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-  \ 'separately': {
-  \   '*': {},
-  \   'tex': {
-  \     'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-  \   },
-  \   'lisp': {
-  \     'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-  \   },
-  \   'vim': {
-  \     'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-  \   },
-  \   'html': {
-  \     'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-  \   },
-  \   'css': 0
-  \ }
-  \}
+      \ 'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+      \ 'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+      \ 'operators': '_,_',
+      \ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+      \ 'separately': {
+      \   '*': {},
+      \   'tex': {
+      \     'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+      \   },
+      \   'lisp': {
+      \     'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+      \   },
+      \   'vim': {
+      \     'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+      \   },
+      \   'html': {
+      \     'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+      \   },
+      \   'css': 0
+      \ }
+      \}
 
 """""""""""""""
 " wildfire.vim
 """""""""""""""
-map e <Plug>(wildfire-fuel)
-vmap E <Plug>(wildfire-water)
-nmap <Leader>s <Plug>(wildfire-quick-select)
+" map e <Plug>(wildfire-fuel)
+" vmap E <Plug>(wildfire-water)
+" nmap <Leader>s <Plug>(wildfire-quick-select)
 let g:wildfire_objects = {
-  \ "*" : ["iw", "iW", "i'", "a'", 'i"', 'a"', "i)", "a)", "i>", "a>" , "i]", "a]", "i}", "a}"],
-  \ "html,xml" : ["at", "it"],
-  \ "markdown" : ["iw", "iW", "i`", "a`", "i|", "i'", "a'", 'i"', 'a"', "i)", "a)", "i>", "a>" , "i]", "a]", "i}", "a}"],
-  \ }
+      \ "*" : ["iw", "iW", "i'", "a'", 'i"', 'a"', "ib", "ab", "iB", "aB"],
+      \ "html,xml" : ["at", "it"],
+      \ "markdown" : ["iw", "iW", "i`", "a`", "i|", "i'", "a'", 'i"', 'a"', "i)", "a)", "i>", "a>" , "i]", "a]", "i}", "a}"],
+      \ }
 
 """"""""""""""""""""
 " vim-expand-region
 """"""""""""""""""""
-" map e <Plug>(expand_region_expand)
-" map E <Plug>(expand_region_shrink)
+map e <Plug>(expand_region_expand)
+map E <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
-  \ 'iw'  :0,
-  \ 'iW'  :0,
-  \ 'i"'  :0,
-  \ 'i''' :0,
-  \ 'i]'  :1,
-  \ 'ib'  :1,
-  \ 'iB'  :1,
-  \ 'il'  :0,
-  \ 'ip'  :0,
-  \ 'ie'  :0
-  \ }
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'i"'  :0,
+      \ 'a"'  :0,
+      \ 'i''' :0,
+      \ 'a''' :0,
+      \ 'i('  :1,
+      \ 'a('  :1,
+      \ 'i['  :1,
+      \ 'a['  :1,
+      \ 'i<'  :1,
+      \ 'a<'  :1,
+      \ 'i{'  :1,
+      \ 'a{'  :1,
+      \ 'il'  :0,
+      \ 'ii'  :1,
+      \ 'ai'  :1,
+      \ 'iB'  :1,
+      \ 'aB'  :1
+      \ }
 
-"""""""""""""""
+call expand_region#custom_text_objects('markdown', {
+      \ 'i|'  :0
+      \})
+
+call expand_region#custom_text_objects('html', {
+      \ 'it'  :1,
+      \ 'at'  :1
+      \})
+""""""""""""""""""""""""
+" kana/vim-textobj-user
+""""""""""""""""""""""""
+
+" il 選取行
+call textobj#user#plugin('line', {
+      \   '-': {
+      \     'select-a-function': 'CurrentLineA',
+      \     'select-a': 'al',
+      \     'select-i-function': 'CurrentLineI',
+      \     'select-i': 'il',
+      \   },
+      \ })
+
+function! CurrentLineA()
+  normal! 0
+  let head_pos = getpos('.')
+  normal! $
+  let tail_pos = getpos('.')
+  return ['v', head_pos, tail_pos]
+endfunction
+
+function! CurrentLineI()
+  normal! ^
+  let head_pos = getpos('.')
+  normal! g_
+  let tail_pos = getpos('.')
+  let non_blank_char_exists_p = getline('.')[head_pos[2] - 1] !~# '\s'
+  return
+        \ non_blank_char_exists_p
+        \ ? ['v', head_pos, tail_pos]
+        \ : 0
+endfunction
+
+""""""""""""""""
 " vim-sandwich
 """""""""""""""
 
@@ -359,28 +419,28 @@ vmap [ sa[h
 vmap ] sa[h%l
 vmap { sa{h
 vmap } sa{h%l
-" vmap < sa<h
+" vmap a< sa<h
 vmap " sa"h
 vmap ' sa'h
 
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 " 插入括號自動 Tab
 let g:sandwich#recipes += [
-  \   {
-  \     'buns'        : ['{', '}'],
-  \     'motionwise'  : ['line'],
-  \     'kind'        : ['add'],
-  \     'linewise'    : 1,
-  \     'command'     : ["'[+1,']-1normal! >>"],
-  \   },
-  \   {
-  \     'buns'        : ['{', '}'],
-  \     'motionwise'  : ['line'],
-  \     'kind'        : ['delete'],
-  \     'linewise'    : 1,
-  \     'command'     : ["'[,']normal! <<"],
-  \   }
-  \ ]
+      \   {
+      \     'buns'        : ['{', '}'],
+      \     'motionwise'  : ['line'],
+      \     'kind'        : ['add'],
+      \     'linewise'    : 1,
+      \     'command'     : ["'[+1,']-1normal! >>"],
+      \   },
+      \   {
+      \     'buns'        : ['{', '}'],
+      \     'motionwise'  : ['line'],
+      \     'kind'        : ['delete'],
+      \     'linewise'    : 1,
+      \     'command'     : ["'[,']normal! <<"],
+      \   }
+      \ ]
 
 """""""""""""
 " auto-pairs
@@ -447,17 +507,17 @@ let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#keymap#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#buffer_idx_format = {
-  \ '0': '0 ',
-  \ '1': '1 ',
-  \ '2': '2 ',
-  \ '3': '3 ',
-  \ '4': '4 ',
-  \ '5': '5 ',
-  \ '6': '6 ',
-  \ '7': '7 ',
-  \ '8': '8 ',
-  \ '9': '9 '
-  \}
+      \ '0': '0 ',
+      \ '1': '1 ',
+      \ '2': '2 ',
+      \ '3': '3 ',
+      \ '4': '4 ',
+      \ '5': '5 ',
+      \ '6': '6 ',
+      \ '7': '7 ',
+      \ '8': '8 ',
+      \ '9': '9 '
+      \}
 
 " 设置切换tab的快捷键 <\> + <-> 切换到前一个 tab
 nmap bk <Plug>AirlineSelectPrevTab
@@ -476,22 +536,22 @@ nmap <Leader>7 <Plug>AirlineSelectTab7
 nmap <Leader>8 <Plug>AirlineSelectTab8
 nmap <Leader>9 <Plug>AirlineSelectTab9
 
-" 添加檔案顯示名稱 
+" 添加檔案顯示名稱
 let g:airline_filetype_overrides = {
-  \ 'coc-explorer':  [ 'CoC Explorer', '' ],
-  \ 'defx':  ['defx', '%{b:defx.paths[0]}'],
-  \ 'fugitive': ['fugitive', '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}'],
-  \ 'floggraph':  [ 'Flog', '%{get(b:, "flog_status_summary", "")}' ],
-  \ 'gundo': [ 'Gundo', '' ],
-  \ 'help':  [ 'Help', '%f' ],
-  \ 'minibufexpl': [ 'MiniBufExplorer', '' ],
-  \ 'nerdtree': [ get(g:, 'NERDTreeStatusline', 'NERD'), '' ],
-  \ 'startify': [ 'startify', '' ],
-  \ 'vim-plug': [ 'Plugins', '' ],
-  \ 'vimfiler': [ 'vimfiler', '%{vimfiler#get_status_string()}' ],
-  \ 'vimshell': ['vimshell','%{vimshell#get_status_string()}'],
-  \ 'vaffle' : [ 'Vaffle', '%{b:vaffle.dir}' ],
-  \ }
+      \ 'coc-explorer':  [ 'CoC Explorer', '' ],
+      \ 'defx':  ['defx', '%{b:defx.paths[0]}'],
+      \ 'fugitive': ['fugitive', '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}'],
+      \ 'floggraph':  [ 'Flog', '%{get(b:, "flog_status_summary", "")}' ],
+      \ 'gundo': [ 'Gundo', '' ],
+      \ 'help':  [ 'Help', '%f' ],
+      \ 'minibufexpl': [ 'MiniBufExplorer', '' ],
+      \ 'nerdtree': [ get(g:, 'NERDTreeStatusline', 'NERD'), '' ],
+      \ 'startify': [ 'startify', '' ],
+      \ 'vim-plug': [ 'Plugins', '' ],
+      \ 'vimfiler': [ 'vimfiler', '%{vimfiler#get_status_string()}' ],
+      \ 'vimshell': ['vimshell','%{vimshell#get_status_string()}'],
+      \ 'vaffle' : [ 'Vaffle', '%{b:vaffle.dir}' ],
+      \ }
 
 """"""""""""
 " NERDTree
@@ -511,17 +571,17 @@ let NERDTreeMinimalUI=1
 " 資料夾開啟圖標
 " let NERDTreeDirArrowExpandable = "\u00a0"
 " let NERDTreeDirArrowCollapsible = "\u00a0"
-let g:NERDTreeDirArrowExpandable = '+' 
+let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '~'
 
 " 启动 NERDTree 如果指定了一个文件，则将光标移至其窗口
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
-" 当 Vim 以目录参数启动时，启动 NERDTree 
+" 当 Vim 以目录参数启动时，启动 NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-  \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+      \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 " 關閉視窗時，視窗只剩下 NERDTree，則會關閉 Vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q |endif
@@ -534,17 +594,17 @@ let g:airline#extensions#nerdtree_statusline = 0
 let g:NERDTreeGitStatusShowIgnored = 1
 " 符號設置
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-  \ 'Modified'  :'✹',
-  \ 'Staged'    :'✚',
-  \ 'Untracked' :'✭',
-  \ 'Renamed'   :'➜',
-  \ 'Unmerged'  :'═',
-  \ 'Deleted'   :'✖',
-  \ 'Dirty'     :'✗',
-  \ 'Ignored'   :'☒',
-  \ 'Clean'     :'✔︎',
-  \ 'Unknown'   :'?',
-  \ }
+      \ 'Modified'  :'✹',
+      \ 'Staged'    :'✚',
+      \ 'Untracked' :'✭',
+      \ 'Renamed'   :'➜',
+      \ 'Unmerged'  :'═',
+      \ 'Deleted'   :'✖',
+      \ 'Dirty'     :'✗',
+      \ 'Ignored'   :'☒',
+      \ 'Clean'     :'✔︎',
+      \ 'Unknown'   :'?',
+      \ }
 
 """""""""""""""
 " vim-devicons
@@ -616,9 +676,9 @@ endif
 
 " <Tab> 鍵控制補全
 inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<Tab>" :
-  \ coc#refresh()
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -679,15 +739,15 @@ endif
 "   " Update signature help on jump placeholder.
 "   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 " augroup end
-" 
+"
 " " Applying codeAction to the selected region.
 " " Example: `<Leader>aap` for current paragraph
 " xmap <Leader>a  <Plug>(coc-codeaction-selected)
 " nmap <Leader>a  <Plug>(coc-codeaction-selected)
-" 
+"
 " " Remap keys for applying codeAction to the current buffer.
 " nmap <Leader>ac  <Plug>(coc-codeaction)
-" 
+"
 " " Map function and class text objects
 " " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 " xmap if <Plug>(coc-funcobj-i)
@@ -740,6 +800,23 @@ xmap <Leader>x  <Plug>(coc-convert-snippet)
 nmap ts <Plug>(coc-translator-p)
 vmap ts <Plug>(coc-translator-pv)
 
+"""""""""""""""""
+" vim-autoformat
+"""""""""""""""""
+noremap <F7> :Autoformat<CR>
+" 自動縮進
+let g:autoformat_autoindent = 1
+" 自動重製 Tab 鍵
+let g:autoformat_retab = 1
+" 刪除空白
+let g:autoformat_remove_trailing_spaces = 1
+" 對同個文件使用多種方式格式化
+" html => js / css
+let g:formatters_vue = ['eslint_local', 'stylelint']
+let g:run_all_formatters_vue = 1
+
+autocmd BufWrite *.c,*.cpp,*.py,*.vim :Autoformat
+
 """""""""""
 " Run Code
 """""""""""
@@ -747,7 +824,7 @@ vmap ts <Plug>(coc-translator-pv)
 " imap <F9>  <ESC>:w<CR>:call Run()<CR>
 " map  <F10> :w<CR>:call Debug()<CR>
 " imap <F10> <ESC>:w<CR>:call Debug()<CR>
-" 
+"
 " func!  Debug()
 "     if expand("%:e") == "c" || expand("%:e") == "cc" || expand("%:e") == "cxx" || expand("%:e") == "cpp"
 "         exe ":setlocal makeprg=".'g++\ %\ -o\ %<\ -gstabs+'
@@ -761,7 +838,7 @@ vmap ts <Plug>(coc-translator-pv)
 "         echo "Language not support! :-("
 "     endif
 " endfunc
-" 
+"
 " func! Run()
 "     if expand("%:e") == "py"
 "         ! Python -u "%<.py"
@@ -809,13 +886,13 @@ vmap ts <Plug>(coc-translator-pv)
 " vim-code-runner
 """"""""""""""""""
 " nmap <silent><F10> <Plug>CodeRunner
-" 
+"
 " " 執行自動保存
 " let g:code_runner_save_before_execute = 1
-" 
+"
 " " 輸出視窗大小
 " let g:code_runner_output_window_size = 6
-" 
+"
 " " 檔案執行命令
 " let g:CodeRunnerCommandMap = {
 "   \ 'python' : 'python $fileName',
@@ -870,15 +947,15 @@ sign define vimspectorCurrentFrame  text=▶   texthl=Special    linehl=CursorLi
 
 " 側邊欄顯示優先權
 let g:vimspector_sign_priority = {
-  \ 'vimspectorBP':            9,
-  \ 'vimspectorBPCond':        9,
-  \ 'vimspectorBPLog':         9,
-  \ 'vimspectorBPDisabled':    9,
-  \ 'vimspectorPC':            200,
-  \ 'vimspectorPCBP':          200,
-  \ 'vimspectorCurrentThread': 200,
-  \ 'vimspectorCurrentFrame':  200,
-  \ }
+      \ 'vimspectorBP':            9,
+      \ 'vimspectorBPCond':        9,
+      \ 'vimspectorBPLog':         9,
+      \ 'vimspectorBPDisabled':    9,
+      \ 'vimspectorPC':            200,
+      \ 'vimspectorPCBP':          200,
+      \ 'vimspectorCurrentThread': 200,
+      \ 'vimspectorCurrentFrame':  200,
+      \ }
 
 " UI 大小
 let g:vimspector_sidebar_width = 39
@@ -1006,29 +1083,28 @@ autocmd FileType markdown nnoremap <buffer> <F5> :CocCommand markdown-preview-en
 " vista.vim
 """"""""""""
 noremap T :Vista!!<CR>
-" 跳到下一個 Tag
-noremap <C-t> :silent! Vista finder coc<CR>
+" noremap <C-t> :silent! Vista finder coc<CR>
 
-" function! NearestMethodOrFunction() abort
-"     return get(b:, 'vista_nearest_method_or_function', '')
-" endfunction
-" 
-" set statusline+=%{NearestMethodOrFunction()}
-" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+set statusline+=%{NearestMethodOrFunction()}
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-" let g:vista_icon_indent = ["▸ ", ""] 
+" let g:vista_icon_indent = ["▸ ", ""]
 let g:vista_default_executive = 'coc'
 let g:vista_executive_for = {
-  \ 'cpp': 'coc',
-  \ 'php': 'coc',
-  \ }
-let g:vista_fzf_preview = ['right:50%']
+      \ 'cpp': 'coc',
+      \ 'php': 'coc',
+      \ }
+" let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
 let g:vista#renderer#icons = {
-  \ "function": "\uf794",
-  \ "variable": "\uf71b",
-  \ }
+      \ "function": "\uf794",
+      \ "variable": "\uf71b",
+      \ }
 let g:scrollstatus_size = 15
 
 """"""""""""""""
@@ -1199,3 +1275,38 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " endfunction
 "
 " noremap <silent><expr> <Leader>/ incsearch#go(<SID>config_easyfuzzymotion())
+
+"""""""""""
+" suda.vim
+"""""""""""
+nnoremap <Leader>s :SudaWrite<CR>
+let g:suda_smart_edit = 1
+
+""""""""""""""""
+" vim-signature
+""""""""""""""""
+
+let g:SignatureMap = {
+      \ 'Leader'             :  "m",
+      \ 'PlaceNextMark'      :  "",
+      \ 'ToggleMarkAtLine'   :  "m<Leader>",
+      \ 'PurgeMarksAtLine'   :  "",
+      \ 'DeleteMark'         :  "",
+      \ 'PurgeMarks'         :  "m<BS>",
+      \ 'PurgeMarkers'       :  "",
+      \ 'GotoNextLineAlpha'  :  "M>",
+      \ 'GotoPrevLineAlpha'  :  "M<",
+      \ 'GotoNextSpotAlpha'  :  "",
+      \ 'GotoPrevSpotAlpha'  :  "",
+      \ 'GotoNextLineByPos'  :  "m.",
+      \ 'GotoPrevLineByPos'  :  "m,",
+      \ 'GotoNextSpotByPos'  :  "",
+      \ 'GotoPrevSpotByPos'  :  "",
+      \ 'GotoNextMarker'     :  "",
+      \ 'GotoPrevMarker'     :  "",
+      \ 'GotoNextMarkerAny'  :  "",
+      \ 'GotoPrevMarkerAny'  :  "",
+      \ 'ListBufferMarks'    :  "m/",
+      \ 'ListBufferMarkers'  :  ""
+      \ }
+let g:SignaturePrioritizeMarks = 0
