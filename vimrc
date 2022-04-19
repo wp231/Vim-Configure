@@ -969,8 +969,8 @@ let g:vimspector_code_minwidth = 82
 let g:vimspector_terminal_maxwidth = 54
 let g:vimspector_terminal_minwidth = 10
 
-" let g:vimspector_base_dir = expand( '$HOME/.vim/vimspector-config' )
-" let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
+let g:vimspector_base_dir = expand( '$HOME/.vim/vimspector-config' )
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
 
 """""""""""""
 " indentLine
@@ -1284,7 +1284,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " suda.vim
 """""""""""
 nnoremap <Leader>s :SudaWrite<CR>
-let g:suda_smart_edit = 1
+" let g:suda_smart_edit = 1
 
 """"""""""""""""
 " vim-signature

@@ -357,7 +357,7 @@ apt install -y clang-format
 - 安裝
 
 ```vim
-VimspectorInstall ccls debugpy vscode-cpptools CodeLLDB --verbose
+VimspectorInstall debugpy vscode-cpptools CodeLLDB --verbose
 ```
 
 or
