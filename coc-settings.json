@@ -40,8 +40,6 @@
     "python",
     "vue",
     "svelte",
-    "c",
-    "cpp",
     "cs",
     "prisma"
   ],
@@ -139,6 +137,8 @@
     "ccls": {
       "command": "ccls",
       "filetypes": [
+        "c",
+        "cpp",
         "cuda",
         "objc",
         "objcpp"
