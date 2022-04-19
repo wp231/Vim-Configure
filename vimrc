@@ -27,7 +27,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " 搜尋加強
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
+" Plug 'haya14busa/incsearch-fuzzy.vim'
 " 狀態欄
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -118,6 +118,9 @@ set scrolloff=5
 " 開啟摺疊
 set foldmethod=indent
 set foldlevel=99
+
+" Esc 按鍵延遲修復
+set ttimeoutlen=5
 
 " 光標設置
 "  1 -> blinking block
