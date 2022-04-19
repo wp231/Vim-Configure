@@ -807,6 +807,18 @@ let g:autoformat_remove_trailing_spaces = 1
 let g:formatters_vue = ['eslint_local', 'stylelint']
 let g:run_all_formatters_vue = 1
 
+" C 格式化配置
+let g:formatdef_hl_c='"clang-format -style=\"{
+      \ BasedOnStyle: LLVM, 
+      \ AllowShortFunctionsOnASingleLine: Empty,
+      \ SpacesBeforeTrailingComments: 1,
+      \ BinPackParameters: false,
+      \ IndentCaseLabels: true,
+      \ IndentGotoLabels: false
+      \ }\""'
+let g:formatters_c = ['hl_c']
+let g:formatters_cpp = ['hl_c']
+
 autocmd BufWrite *.c,*.cpp,*.py,*.vim :Autoformat
 
 """""""""""
