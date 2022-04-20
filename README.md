@@ -308,16 +308,15 @@ apt install -y clang-format
 #### [coc-nvim](https://github.com/neoclide/coc.nvim) 
 - lsp 自動補全
 
-| 快捷鍵         | 功能         |
-|----------------|--------------|
-| `Ctrl + Space` | 調出自動補全 |
-| `Tab`          | 切換自動補全 |
-| `g[` `g]`      | 查看報錯     |
-| `Leader` `qf`  | 自動修復報錯 |
-| `gd`           | 查看定義     |
-| `gy`           | 查看定義     |
-| `gi`           | 查看定義     |
-| `gr`           | 查看定義     |
+| 快捷鍵        | 功能         |
+|---------------|--------------|
+| `Tab`         | 切換自動補全 |
+| `g[` `g]`     | 查看報錯     |
+| `Leader` `qf` | 自動修復報錯 |
+| `gd`          | 查看定義     |
+| `gy`          | 查看定義     |
+| `gi`          | 查看定義     |
+| `gr`          | 查看定義     |
 
 #### [coc-snippets](https://github.com/neoclide/coc-snippets) 
 - 代碼片段補全
@@ -325,7 +324,6 @@ apt install -y clang-format
 | 快捷鍵        | 功能                   |
 |---------------|------------------------|
 | `Leader` `H`  | 顯示幫助文檔           |
-| `Leader` `f`  | 格式化程式碼           |
 | `Leader` `rn` | 重命名變數             |
 | `Ctrl + j`    | 觸發 / 切換下個修改點  |
 | `Ctrl + k`    | 切換上個修改點         |

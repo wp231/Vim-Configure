@@ -676,24 +676,9 @@ set shortmess+=c
 
 nmap tt :CocCommand explorer<CR>
 
-" Ctrl + Space 調出自動補全
-if has('nvim')
-  inoremap <silent><expr> <C-space> coc#refresh()
-else
-  inoremap <silent><expr> <C-@> coc#refresh()
-endif
-
 " <Tab> 鍵控制補全
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<Tab>" 
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>" 
 
 " 查看報錯信息
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -709,6 +694,17 @@ nmap <silent> gr <Plug>(coc-references)
 
 " 顯示文黨
 nnoremap <silent> <Leader>H :call <SID>show_documentation()<CR>
+vnoremap <silent> <Leader>H :<C-u>call <SID>visual_show_documentation(visualmode())<CR>
+
+function! s:visual_show_documentation(type)
+  if index(['vim','help'], &filetype) >= 0 && a:type ==# 'v'
+    let saved_unnamed_register = @@
+    normal! `<v`>y
+    let word = substitute(@@, '\n$', '', 'g')
+    let @@ = saved_unnamed_register
+    execute 'h '.word
+  endif
+endfunction
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -727,8 +723,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <Leader>rn <Plug>(coc-rename)
 
 " 格式化程式碼
-xmap <Leader>f  <Plug>(coc-format-selected)
-nmap <Leader>f  <Plug>(coc-format-selected)
+" xmap <Leader>f  <Plug>(coc-format-selected)
+" nmap <Leader>f  <Plug>(coc-format-selected)
 
 " 滾動浮動窗口
 if has('nvim-0.4.0') || has('patch-8.2.0750')
@@ -741,23 +737,6 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Code Action
-" augroup mygroup
-"   autocmd!
-"   " Setup formatexpr specified filetype(s).
-"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"   " Update signature help on jump placeholder.
-"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" augroup end
-"
-" " Applying codeAction to the selected region.
-" " Example: `<Leader>aap` for current paragraph
-" xmap <Leader>a  <Plug>(coc-codeaction-selected)
-" nmap <Leader>a  <Plug>(coc-codeaction-selected)
-"
-" " Remap keys for applying codeAction to the current buffer.
-" nmap <Leader>ac  <Plug>(coc-codeaction)
 
 " 可視模式選取
 xmap if <Plug>(coc-funcobj-i)
@@ -794,7 +773,6 @@ inoremap <silent><expr> <C-j>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ coc#refresh()
-"
 
 """""""""""""""""
 " coc-translator
@@ -1123,8 +1101,8 @@ nmap <Leader>tm :TableModeToggle<CR>
 
 autocmd BufRead,BufNewFile *.md nmap <buffer> S <Leader>tr:w<CR>
 
-autocmd BufEnter *.md execute('TableModeEnable')
-autocmd BufLeave *.md execute('TableModeDisable')
+autocmd BufEnter *.md :silent execute('TableModeEnable')
+autocmd BufLeave *.md :silent execute('TableModeDisable')
 " 切換表格
 let g:table_mode_toggle_map = '<Leader>tm'
 " 格式化
