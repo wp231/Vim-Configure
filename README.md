@@ -44,8 +44,11 @@
   - [標籤列表管理](#標籤列表管理)
     + [vista.vim](#vistavim)
     + [vim-signature](#vim-signature)
+    + [coc-lists](#coc-lists)
   - [版本管理](#版本管理)
     + [agit.vim](#agitvim)
+    + [coc-git](#coc-git)
+    + [vim-gitgutter](#vim-gitgutter)
     + [undotree](#undotree)
 
 <!-- vim-markdown-toc -->
@@ -55,7 +58,7 @@
 ### 必備軟體安裝
 
 ```shell
-apt install -y git pip npm nodejs gdb
+apt install -y git pip npm nodejs gdb ripgrep
 ```
 #### coc-nvim
 - 升級 nodejs
@@ -149,7 +152,6 @@ apt install -y clang-format
 |--------|----------------|
 | `,`    | 單字符搜索移動 |
 | `.`    | 雙字符搜索移動 |
-| `z`    | 行移動         |
 
 
 ### 保存 / 退出
@@ -481,6 +483,22 @@ pip install debgpy
 | `M` `<`         | 照字母順序到上個標籤 |
 | `m` `/`         | 顯示所有標籤         |
 
+#### [coc-lists](https://github.com/neoclide/coc-lists) 
+
+| 快捷鍵        | 功能                       |
+|---------------|----------------------------|
+| `i` / `a`     | 進入插入模式(搜索)         |
+| `Ctrl + o`    | 退出插入模式               |
+| `Leader` `u`  | 跳到下個                   |
+| `Leader` `i`  | 跳到上個                   |
+| `Leader` `p`  | 開啟上次列表               |
+| `Leader` `ce` | 開啟工作目錄下檔案列表     |
+| `Leader` `ct` | 顯示標籤列表               |
+| `Leader` `cg` | 搜尋工作目錄               |
+| `Leader` `w`  | 在當前檔案, 搜尋單詞       |
+| `Leader` `f`  | 在當前工作目錄內, 搜尋單詞 |
+
+
 ### 版本管理
 #### [agit.vim](https://github.com/cohama/agit.vim) 
 - Git 版本管理
@@ -505,6 +523,27 @@ pip install debgpy
 | `ri`       | 執行 "rebase -i" 在當前分支     |
 | `di`       | 顯示當前文件版本的差異          |
 | `dl`       | 顯示當前文件與本地之間的差異    |
+
+#### [coc-git](https://github.com/neoclide/coc-git) 
+- 文件的 git
+
+| 快捷鍵        | 功能         |
+|---------------|--------------|
+| `]h`          | 下一個修改塊 |
+| `[h`          | 上一個修改塊 |
+| `]c`          | 下一個衝突塊 |
+| `[c`          | 上一個衝突塊 |
+| `gs`          | 顯示當前修改 |
+| `Leader` `gs` | git status   |
+| `Leader` `gc` | git commits  |
+
+#### [vim-gitgutter](https://github.com/airblade/vim-gitgutter) 
+- 文件的 git
+
+| 快捷鍵        | 功能                   |
+|---------------|------------------------|
+| `Leader` `ga` | 添加當前塊修改到暫存區 |
+| `Leader` `gu` | 取消當前塊的修改       |
 
 #### [undotree](https://github.com/mbbill/undotree) 
 - 文件撤銷

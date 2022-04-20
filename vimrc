@@ -12,7 +12,7 @@ Plug 'yianwillis/vimcdoc'
 Plug 'TaDaa/vimade'
 " 配色
 Plug 'crusoexia/vim-monokai'
-Plug 'connorholyday/vim-snazzy'
+" Plug 'connorholyday/vim-snazzy'
 " 彩色括號
 Plug 'luochen1990/rainbow'
 " 括號選取
@@ -39,6 +39,7 @@ Plug 'cohama/agit.vim'
 Plug 'mbbill/undotree'
 " Tab Line
 Plug 'Yggdroot/indentLine'
+" Plug 'nathanaelkane/vim-indent-guides'
 " 自動註釋
 Plug 'preservim/nerdcommenter'
 " Markdown
@@ -63,7 +64,7 @@ Plug 'puremourning/vimspector'
 "   \ Plug 'Xuyuanp/nerdtree-git-plugin' |
 "   \ Plug 'tiagofumo/vim-nerdtree-syntax-highlight' |
 "   \ Plug 'ryanoasis/vim-devicons'
-" 自定義 il, ii ...
+" 自定義可視模式 il, ii ...
 Plug 'kana/vim-textobj-user' |
       \ Plug 'kana/vim-textobj-indent' |
       \ Plug 'kana/vim-textobj-entire'
@@ -79,6 +80,8 @@ let g:coc_global_extension = [
       \ 'coc-pyright',
       \ 'coc-snippets',
       \ 'coc-explorer',
+      \ 'coc-lists',
+      \ 'coc-git',
       \ 'coc-diagnostic',
       \ 'coc-webview',
       \ 'coc-markdown-preview-enhanced',
@@ -108,6 +111,8 @@ set showcmd
 set noeb
 " 忽略大小寫
 set ignorecase
+" 命令模式 TAB 補全列
+set wildmenu
 " 取消自動註釋
 set formatoptions-=ro
 " autocmd BufRead,BufNewFile * if @% == 'vimrc' | set formatoptions-=ro | endif
@@ -452,6 +457,7 @@ let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
 autocmd FileType markdown let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```'}
 autocmd FileType html,xml let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "<":">"}
 autocmd FileType vim let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "<":">"}
+autocmd BufRead,BufNewFile coc-settings.json let b:AutoPairs = {'(':')', '[':']', '{':'}'}
 
 " 退格鍵刪除
 let g:AutoPairsMapBS = 1
@@ -560,7 +566,7 @@ let g:airline_filetype_overrides = {
 " NERDTree
 """"""""""""
 set encoding=UTF-8
-nnoremap tt :NERDTreeToggle<CR>
+" nnoremap tt :NERDTreeToggle<CR>
 
 " 顯示隱藏文件
 let NERDTreeShowHidden=1
@@ -734,6 +740,8 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
 " Code Action
 " augroup mygroup
 "   autocmd!
@@ -750,17 +758,16 @@ endif
 "
 " " Remap keys for applying codeAction to the current buffer.
 " nmap <Leader>ac  <Plug>(coc-codeaction)
-"
-" " Map function and class text objects
-" " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-" xmap if <Plug>(coc-funcobj-i)
-" omap if <Plug>(coc-funcobj-i)
-" xmap af <Plug>(coc-funcobj-a)
-" omap af <Plug>(coc-funcobj-a)
-" xmap ic <Plug>(coc-classobj-i)
-" omap ic <Plug>(coc-classobj-i)
-" xmap ac <Plug>(coc-classobj-a)
-" omap ac <Plug>(coc-classobj-a)
+
+" 可視模式選取
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 """""""""""""""
 " coc-snippets
@@ -794,6 +801,73 @@ inoremap <silent><expr> <C-j>
 """""""""""""""""
 nmap ts <Plug>(coc-translator-p)
 vmap ts <Plug>(coc-translator-pv)
+
+""""""""""
+" coc-git
+""""""""""
+" 瀏覽 git 修改塊
+nmap [h <Plug>(coc-git-prevchunk)
+nmap ]h <Plug>(coc-git-nextchunk)
+" 瀏覽衝突
+nmap [c <Plug>(coc-git-prevconflict)
+nmap ]c <Plug>(coc-git-nextconflict)
+" 顯示當前塊的修改
+nmap gs <Plug>(coc-git-chunkinfo)
+" Git 狀態, 歷史紀錄
+nnoremap <silent> <Leader>gs  :<C-u>CocList --normal gstatus<CR>
+nnoremap <silent> <Leader>gc  :<C-u>CocList --normal commits<CR>
+" 可視模式選取
+omap ig <Plug>(coc-git-chunk-inner)
+xmap ig <Plug>(coc-git-chunk-inner)
+omap ag <Plug>(coc-git-chunk-outer)
+xmap ag <Plug>(coc-git-chunk-outer)
+
+""""""""""""
+" coc-lists
+""""""""""""
+
+nnoremap <silent> <Leader>u  :<C-u>CocNext<CR>
+nnoremap <silent> <Leader>i  :<C-u>CocPrev<CR>
+nnoremap <silent> <Leader>p  :<C-u>CocListResume<CR>
+
+nnoremap <silent> <Leader>ce :<C-u>CocList --normal files<CR>
+nnoremap <silent> <Leader>cg :<C-u>CocList -I --normal grep<CR>
+nnoremap <silent> <Leader>ct :<C-u>CocList --normal tags<CR>
+
+nnoremap <silent> <Leader>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+vnoremap <leader>w :<C-u>call <SID>BufGrepFromSelected(visualmode())<CR>
+function! s:BufGrepFromSelected(type)
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  execute 'CocList -I --normal --input='.word.' words'
+endfunction
+
+nnoremap <silent> <Leader>f :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
+vnoremap <leader>f :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+
+function! s:GrepFromSelected(type)
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  execute 'CocList --normal grep '.word
+endfunction
 
 """""""""""""""""
 " vim-autoformat
@@ -965,11 +1039,10 @@ let g:vimspector_sign_priority = {
       \ }
 
 " UI 大小
-let g:vimspector_sidebar_width = 39
+let g:vimspector_sidebar_width = 38
 let g:vimspector_bottombar_height = 10
 let g:vimspector_code_minwidth = 82
-" let g:vimspector_terminal_maxwidth = 35
-let g:vimspector_terminal_maxwidth = 54
+let g:vimspector_terminal_maxwidth = 36
 let g:vimspector_terminal_minwidth = 10
 
 let g:vimspector_base_dir = expand( '$HOME/.vim/vimspector-config' )
@@ -984,11 +1057,40 @@ let g:indentLine_enabled = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " 設定語法隱藏
-let g:indentLine_concealcursor = 'inc'
+let g:indentLine_concealcursor = ''
 let g:indentLine_conceallevel = 2
 
 let g:vim_json_syntax_conceal = 0
 let g:markdown_syntax_conceal=0
+
+" 白名單
+let g:indentLine_fileType = ['c', 'cpp', 'python', 'java', 'json', 'js', 'html', 'css', 'vim']
+" 黑名單
+" let g:indentLine_fileTypeExclude = ['text']
+" let g:indentLine_bufTypeExclude = ['help', 'terminal']
+" let g:indentLine_bufNameExclude = [
+"       \ '.coc-explorer.-\d',
+"       \ 'vimspector.Variables',
+"       \ 'vimspector.Watches',
+"       \ 'vimspector.StackTrace',
+"       \ 'vimspector.Console'
+"       \ ]
+
+let g:indentLine_color_gui = '#8e8e8e'
+" let g:indentLine_bgcolor_gui = '#272822'
+
+""""""""""""""""""""
+" vim-indent-guides
+""""""""""""""""""""
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'coc-explorer']
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 0
+
+let g:indent_guides_auto_colors = 0
+
+hi IndentGuidesOdd  ctermbg=236
+hi IndentGuidesEven ctermbg=237
 
 """"""""""""""""""""
 " markdown snippets
@@ -1133,6 +1235,9 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
+nmap <Leader>ga <Plug>(GitGutterStageHunk)
+nmap <Leader>gu <Plug>(GitGutterUndoHunk)
+
 """""""""""
 " agit.vim
 """""""""""
@@ -1241,19 +1346,14 @@ let g:EasyMotion_do_mapping = 0
 " 忽略大小寫
 let g:EasyMotion_smartcase = 1
 
-map <Leader> <Plug>(easymotion-prefix)
 " 單字移動
 nmap , <Plug>(easymotion-overwin-f)
 " 雙單字移動
 nmap . <Plug>(easymotion-overwin-f2)
 
 " 行移動
-map z <Plug>(easymotion-bd-jk)
-nmap z <Plug>(easymotion-overwin-line)
-
-" Word 移動
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+" map z <Plug>(easymotion-bd-jk)
+" nmap z <Plug>(easymotion-overwin-line)
 
 " " 搜索調用
 " function! s:incsearch_config(...) abort

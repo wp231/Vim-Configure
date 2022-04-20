@@ -5,3 +5,4 @@ vimspector-config/gadgets
 configurations/configurations
 *.swp
 *.backup
+sessions

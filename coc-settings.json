@@ -133,6 +133,19 @@
     ">>": "gitUnstage"
   },
   "json.format.enable": true,
+  "git.enableGutters": false,
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "git.signPriority": 5,
+  "git.changedSign.text": "░",
+  "git.addedSign.text": "▎",
+  "git.topRemovedSign.text": "▏",
+  "git.removedSign.text": "▏",
+  "git.changeRemovedSign.text": "▒",
+  "coc.preferences.enableMarkdown": false,
   "languageserver": {
     "ccls": {
       "command": "ccls",
