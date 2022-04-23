@@ -250,8 +250,8 @@ cnoremap <C-u> <S-Left>
 cnoremap <C-o> <S-Right>
 
 " 插入模式
-inoremap <C-c> <Esc>I
-inoremap <C-v> <Esc>A
+inoremap <C-a> <Esc>I
+inoremap <C-e> <Esc>A
 
 " 可視模
 vnoremap H 7h
@@ -265,6 +265,17 @@ vnoremap Y "+y
 inoremap <C-p> <Esc>"+pa
 nnoremap <C-p> "+p
 
+" 頭尾移動
+nnoremap <silent><expr> 0 ":call JumpHomeEnd()\<CR>"
+fun! JumpHomeEnd()
+  let pos = col('.')
+  normal! ^
+  if pos == col('.')
+    normal! $
+  endif
+endf
+
+nnoremap <C-a> ggvG$
 
 " 開啟文件回到上次編輯位置
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -466,7 +477,7 @@ let g:AutoPairsMapCR = 1
 " 括號內插入空格
 let g:AutoPairsMapSpace = 1
 " 快速移動模式
-let g:AutoPairsFlyMode = 1
+let g:AutoPairsFlyMode = 0
 
 " <C-h>刪除成對括號(僅限內部無字符時)
 let g:AutoPairsMapCh = 0
@@ -476,11 +487,17 @@ let g:AutoPairsMultilineClose = 1
 let g:AutoPairsShortcutToggle = ''
 let g:AutoPairsMoveCharacter = ''
 let g:AutoPairsShortcutFastWrap = '<C-o>'
-let g:AutoPairsShortcutJump = '<C-l>'
-let g:AutoPairsShortcutBackInsert = '<C-u>'
+" let g:AutoPairsShortcutJump = '<C-l>'
+" let g:AutoPairsShortcutBackInsert = '<C-u>'
 
 " 刪除成對括號
 imap <C-h> <Esc>sdbi
+
+" 跳到括號處
+inoremap <silent><expr> <C-f> "\<Esc>:call MyAutoPairsJump()\<CR>a"
+function! MyAutoPairsJump()
+  call search('["\[\]''(){}<>]','W')
+endfunction
 
 """""""""""""""""""
 " vim-visual-multi
@@ -769,9 +786,12 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <Leader>x for convert visual selected code to snippet
 xmap <Leader>x  <Plug>(coc-convert-snippet)
 
-inoremap <silent><expr> <C-j>
+inoremap <silent><expr> <C-l>
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ coc#refresh()
+
+inoremap <silent><expr> <C-j>
+      \ pumvisible() && !coc#jumpable() ? coc#_select_confirm() :
       \ coc#refresh()
 
 """""""""""""""""

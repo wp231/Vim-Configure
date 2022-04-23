@@ -146,6 +146,14 @@
   "git.removedSign.text": "▏",
   "git.changeRemovedSign.text": "▒",
   "coc.preferences.enableMarkdown": false,
+  "clangd.enabled": false,
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}",
+    "--background-index",
+    "--clang-tidy",
+    "--log=verbose",
+    "--pretty"
+  ],
   "languageserver": {
     "ccls": {
       "command": "ccls",
@@ -156,6 +164,7 @@
         "objc",
         "objcpp"
       ],
+      "trace.server": "verbose",
       "rootPatterns": [
         ".git/",
         ".vimspector.json"

@@ -16,6 +16,7 @@
   - [保存 / 退出](#保存--退出)
   - [剪貼](#剪貼)
     + [剪下](#剪下)
+  - [選取](#選取)
     + [系統剪貼簿](#系統剪貼簿)
   - [分割視窗](#分割視窗)
   - [視窗操作](#視窗操作)
@@ -29,7 +30,7 @@
   - [多光標模式](#多光標模式)
     + [vim-visual-multi](#vim-visual-multi)
   - [程式碼補全](#程式碼補全)
-    + [coc-nvim](#coc-nvim-1)
+    + [coc.nvim](#cocnvim)
     + [coc-snippets](#coc-snippets)
     + [vim-autoformat](#vim-autoformat)
   - [翻譯](#翻譯)
@@ -118,19 +119,20 @@ apt install -y clang-format
 
 #### 快速移動
 
-| 快捷鍵 | 功能 |
-|--------|------|
-| `K`    | 上   |
-| `J`    | 下   |
-| `H`    | 左   |
-| `L`    | 右   |
+| 快捷鍵 | 功能     |
+|--------|----------|
+| `K`    | 上       |
+| `J`    | 下       |
+| `H`    | 左       |
+| `L`    | 右       |
+| `0`    | 頭尾移動 |
 
 #### 插入模式移動
 
 | 快捷鍵     | 功能 |
 |------------|------|
-| `Ctrl + c` | Home |
-| `Ctrl + v` | End  |
+| `Ctrl + a` | Home |
+| `Ctrl + e` | End  |
 
 #### 命令模式移動
 
@@ -171,6 +173,12 @@ apt install -y clang-format
 | `dl`   | 剪下當前光標所在單字 |
 | `dL`   | 剪下當前光標到行尾   |
 | `X`    | 剪下當前行           |
+
+### 選取
+
+| 快捷鍵     | 功能 |
+|------------|------|
+| `Ctrl + a` | 全選 |
 
 #### 系統剪貼簿
 
@@ -277,9 +285,8 @@ apt install -y clang-format
 
 | 快捷鍵(插入模式) | 功能           |
 |------------------|----------------|
-| `Ctrl + l`       | 跳轉到下個括號 |
+| `Ctrl + f`       | 跳轉到下個括號 |
 | `Ctrl + o`       | 快速移動括號   |
-| `Ctrl + u`       | 恢復快速跳轉   |
 | `Ctrl + h`       | 刪除成對括號   |
 
 #### [nerdcommenter](https://github.com/preservim/nerdcommenter) 
@@ -305,7 +312,7 @@ apt install -y clang-format
 | `Esc`      | 退出多光標模式      |
 
 ### 程式碼補全
-#### [coc-nvim](https://github.com/neoclide/coc.nvim) 
+#### [coc.nvim](https://github.com/neoclide/coc.nvim) 
 - lsp 自動補全
 
 | 快捷鍵        | 功能         |
@@ -325,7 +332,8 @@ apt install -y clang-format
 |---------------|------------------------|
 | `Leader` `H`  | 顯示幫助文檔           |
 | `Leader` `rn` | 重命名變數             |
-| `Ctrl + j`    | 觸發 / 切換下個修改點  |
+| `Ctrl + l`    | 觸發 Snippet           |
+| `Ctrl + j`    | 切換 / 觸發下個修改點  |
 | `Ctrl + k`    | 切換上個修改點         |
 | `Leader` `x`  | 添加選中片段到 Snippet |
 
