@@ -113,6 +113,7 @@ set noeb
 set ignorecase
 " 命令模式 TAB 補全列
 set wildmenu
+set wildmode=longest,full
 " 取消自動註釋
 set formatoptions-=ro
 " autocmd BufRead,BufNewFile * if @% == 'vimrc' | set formatoptions-=ro | endif
@@ -1006,6 +1007,11 @@ xmap <Leader>di <Plug>VimspectorBalloonEval
 autocmd BufRead,BufNewFile *.Variables nmap <buffer> i <Plug>VimspectorBalloonEval
 " dd 刪除觀察變數
 autocmd BufRead,BufNewFile *.Watches nmap <buffer> dd <Del>
+
+autocmd BufEnter vimspector.Console set nonumber
+autocmd BufEnter vimspector.Console set norelativenumber
+autocmd BufEnter !/bin/sh set nonumber
+autocmd BufEnter !/bin/sh set norelativenumber
 
 " 行斷點
 sign define vimspectorBP            text=\ ● texthl=WarningMsg

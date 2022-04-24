@@ -160,14 +160,16 @@
       "filetypes": [
         "c",
         "cpp",
-        "cuda",
         "objc",
         "objcpp"
       ],
-      "trace.server": "verbose",
       "rootPatterns": [
         ".git/",
-        ".vimspector.json"
+        ".vimspector.json",
+        "compile_commands.json",
+        ".ccls",
+        ".vim/",
+        ".hg/"
       ],
       "initializationOptions": {
         "cache": {
