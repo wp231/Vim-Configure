@@ -281,6 +281,15 @@ nnoremap <C-a> ggvG$
 " 開啟文件回到上次編輯位置
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+nnoremap R :call CompileShowAssembly()<CR><C-w>L
+function! CompileShowAssembly() 
+  set splitright
+  execute "!g++ -o %< -g -std=c++17 %"
+  terminal objdump -S %<
+  set nonumber
+  set norelativenumber
+endfunction
+
 """""""""""""
 " 添加檔案頭
 """""""""""""
@@ -1010,8 +1019,8 @@ autocmd BufRead,BufNewFile *.Watches nmap <buffer> dd <Del>
 
 autocmd BufEnter vimspector.Console set nonumber
 autocmd BufEnter vimspector.Console set norelativenumber
-autocmd BufEnter !/bin/sh set nonumber
-autocmd BufEnter !/bin/sh set norelativenumber
+autocmd BufEnter !/bin/sh* set nonumber
+autocmd BufEnter !/bin/sh* set norelativenumber
 
 " 行斷點
 sign define vimspectorBP            text=\ ● texthl=WarningMsg
