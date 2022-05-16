@@ -899,7 +899,8 @@ let g:formatdef_hl_c='"clang-format -style=\"{
       \ SpacesBeforeTrailingComments: 1,
       \ BinPackParameters: false,
       \ IndentCaseLabels: true,
-      \ IndentGotoLabels: false
+      \ IndentGotoLabels: false,
+      \ AlwaysBreakTemplateDeclarations: Yes
       \ }\""'
 let g:formatters_c = ['hl_c']
 let g:formatters_cpp = ['hl_c']
