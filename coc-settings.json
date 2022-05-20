@@ -133,6 +133,11 @@
     ">>": "gitUnstage"
   },
   "json.format.enable": true,
+  "translator.toLang": "zh_TW",
+  "translator.engines": [
+    "google",
+    "youdao"
+  ],
   "git.enableGutters": false,
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.hlGroup": "GitGutterChange",

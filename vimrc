@@ -895,6 +895,7 @@ let g:run_all_formatters_vue = 1
 " C 格式化配置
 let g:formatdef_hl_c='"clang-format -style=\"{
       \ BasedOnStyle: LLVM, 
+      \ AlignAfterOpenBracket: true,
       \ AllowShortFunctionsOnASingleLine: Empty,
       \ SpacesBeforeTrailingComments: 1,
       \ BinPackParameters: false,
