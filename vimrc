@@ -189,6 +189,15 @@ set cursorline
 " 高亮顏色
 highlight CursorLine cterm=None ctermbg=241 ctermfg=0
 
+" 關閉響鈴,螢幕閃爍
+set noerrorbells
+set vb t_vb=
+
+" 按鍵衝突
+" <Tab> / <C-i>
+" <ESC> / <C-[>
+" <CR> / <C-m>
+
 let g:mapleader = ' '
 inoremap jk <ESC>
 " au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
