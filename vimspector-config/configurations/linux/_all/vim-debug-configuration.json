@@ -60,6 +60,28 @@
         "MIMode": "lldb",
         "MIDebuggerPath": "/usr/bin/lldb-mi-9"
       }
+    },
+    "debugpy": {
+      "adapter": "debugpy",
+      "filetypes": [
+        "python"
+      ],
+      "configuration": {
+        "type": "python",
+        "request": "launch",
+        "cwd": "${workspaceRoot}",
+        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "debugOptions": [],
+        "program": "${workspaceRoot}/${fileBasename}"
+      },
+      "breakpoints": {
+        "exception": {
+          "raised": "N",
+          "uncaught": "",
+          "userUnhandled": ""
+        }
+      }
     }
   }
 }

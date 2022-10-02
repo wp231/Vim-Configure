@@ -151,6 +151,7 @@
   "git.removedSign.text": "▏",
   "git.changeRemovedSign.text": "▒",
   "coc.preferences.enableMarkdown": false,
+  "diagnostic.showUnused": false,
   "clangd.enabled": false,
   "clangd.arguments": [
     "--compile-commands-dir=${workspaceFolder}",
