@@ -1032,6 +1032,8 @@ autocmd BufEnter vimspector.Console set nonumber
 autocmd BufEnter vimspector.Console set norelativenumber
 autocmd BufEnter !/bin/sh* set nonumber
 autocmd BufEnter !/bin/sh* set norelativenumber
+autocmd BufEnter !/usr/bin/python* set nonumber
+autocmd BufEnter !/usr/bin/python* set norelativenumber
 
 " 行斷點
 sign define vimspectorBP            text=\ ● texthl=WarningMsg
