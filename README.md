@@ -4,6 +4,7 @@
 
 * [環境配置](#環境配置)
   - [必備軟體安裝](#必備軟體安裝)
+    + [安裝 vim](#安裝-vim)
     + [coc-nvim](#coc-nvim)
     + [格式化](#格式化)
   - [新增 Nerd Fonts](#新增-nerd-fonts)
@@ -61,6 +62,17 @@
 ```shell
 apt install -y git pip npm nodejs gdb ripgrep
 ```
+
+#### 安裝 vim
+
+```shell
+git clone --branch v8.2.5172 --depth 1 https://github.com/vim/vim.git
+cd vim/src
+./configure --with-features=huge --enable-python3interp
+make
+sudo make install
+```
+
 #### coc-nvim
 - 升級 nodejs
 

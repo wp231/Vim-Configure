@@ -1,7 +1,7 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
   "suggest.noselect": true,
-  "suggest.enablePreview": false,
+  "suggest.enablePreselect": false,
   "snippets.ultisnips.enable": true,
   "suggest.completionItemKindLabels": {
     "class": "\uf0e8",
@@ -195,5 +195,6 @@
         "~"
       ]
     }
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
