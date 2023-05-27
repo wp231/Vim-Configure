@@ -916,7 +916,7 @@ let g:formatdef_hl_c='"clang-format -style=\"{
 let g:formatters_c = ['hl_c']
 let g:formatters_cpp = ['hl_c']
 
-autocmd BufWrite *.c,*.cpp,*.py,*.vim :Autoformat
+autocmd BufWrite *.c,*.cpp :Autoformat
 
 """""""""""
 " Run Code
