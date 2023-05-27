@@ -128,6 +128,10 @@ set foldlevel=99
 " Esc 按鍵延遲修復
 set ttimeoutlen=5
 
+" 修復 Backspace 無法刪除字元
+set nocompatible
+set backspace=indent,eol,start
+
 " 光標設置
 "  1 -> blinking block
 "  2 -> solid block
