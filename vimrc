@@ -485,6 +485,7 @@ let g:sandwich#recipes += [
 """""""""""""
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
 autocmd FileType markdown let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```'}
+autocmd FileType python let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "'''":"'''"}
 autocmd FileType html,xml let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "<":">"}
 autocmd FileType vim let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "<":">"}
 autocmd BufRead,BufNewFile coc-settings.json let b:AutoPairs = {'(':')', '[':']', '{':'}'}
