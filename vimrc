@@ -24,6 +24,8 @@ Plug 'machakann/vim-sandwich'
 Plug 'jiangmiao/auto-pairs'
 " 多光標
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" 維持光標,折疊
+Plug 'wp231/restore-view'
 " 搜尋加強
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -120,17 +122,20 @@ set formatoptions-=ro
 autocmd BufRead,BufNewFile * set formatoptions-=ro
 " 移動時保留行
 set scrolloff=5
-
+" 水平移動時保留字元
+set sidescroll=5
 " 開啟摺疊
 set foldmethod=indent
 set foldlevel=99
-
 " Esc 按鍵延遲修復
 set ttimeoutlen=5
-
 " 修復 Backspace 無法刪除字元
 set nocompatible
 set backspace=indent,eol,start
+" 顯示過長行自動換行
+set wrap
+" 關閉插入模式過長自動換行
+set textwidth=9999999999
 
 " 光標設置
 "  1 -> blinking block
@@ -292,8 +297,11 @@ endf
 nnoremap <C-a> ggvG$
 
 " 開啟文件回到上次編輯位置
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+"""""""""""""""""
+" 反匯編成機器碼
+"""""""""""""""""
 nnoremap R :call CompileShowAssembly()<CR><C-w>L
 function! CompileShowAssembly() 
   set splitright
@@ -325,6 +333,12 @@ endfunction
 "
 "   autocmd BufNewFile * normal G
 " endfunc
+
+"""""""""""""""
+" restore-view
+"""""""""""""""
+set viewoptions=folds,cursor,unix
+let g:skipview_files = []
 
 """""""""
 " vimade
@@ -771,8 +785,8 @@ nmap <Leader>rn <Plug>(coc-rename)
 if has('nvim-0.4.0') || has('patch-8.2.0750')
   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  " inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  " inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
@@ -811,11 +825,11 @@ let g:coc_snippet_prev = '<c-k>'
 xmap <Leader>x  <Plug>(coc-convert-snippet)
 
 inoremap <silent><expr> <C-l>
-      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#pum#visible() ? coc#_select_confirm() :
       \ coc#refresh()
 
 inoremap <silent><expr> <C-j>
-      \ pumvisible() && !coc#jumpable() ? coc#_select_confirm() :
+      \ coc#pum#visible() && !coc#jumpable() ? coc#_select_confirm() :
       \ coc#refresh()
 
 """""""""""""""""

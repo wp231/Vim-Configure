@@ -6,3 +6,4 @@ configurations/configurations
 *.swp
 *.backup
 sessions
+view/
