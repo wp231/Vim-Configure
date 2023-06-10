@@ -134,8 +134,6 @@ set nocompatible
 set backspace=indent,eol,start
 " 顯示過長行自動換行
 set wrap
-" 關閉插入模式過長自動換行
-set textwidth=9999999999
 
 " 光標設置
 "  1 -> blinking block
@@ -164,11 +162,10 @@ function TabPython()
   set tabstop=4
   set softtabstop=4
   set shiftwidth=4
-  set textwidth=79
   set expandtab
   set autoindent
   set fileformat=unix
-  execute('%retab 4')
+  " execute('%retab 4')
 endfunction
 
 autocmd FileType javascript,html,css,xml,json,c,cpp,vim,markdown execute('call Tab2()')
