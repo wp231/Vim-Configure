@@ -60,15 +60,29 @@
 ### 必備軟體安裝
 
 ```shell
-apt install -y git pip npm nodejs gdb ripgrep libncurses-dev
+apt install -y git pip npm nodejs gdb ripgrep
 ```
 
 #### 安裝 vim
 
+- 編譯依賴
+```shell
+sudo apt install -y libncurses5-dev libncurses-dev \
+    libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev \
+    libx11-dev libxtst-dev libxt-dev libsm-dev libxpm-dev
+```
+
 ```shell
 git clone --branch v8.2.5172 --depth 1 https://github.com/vim/vim.git
 cd vim/src
-./configure --with-features=huge --enable-python3interp
+./configure --with-x \
+    --enable-multibyte \
+    --enable-gui=auto \
+    --with-features=huge \
+    --enable-luainterp \
+    --enable-perlinterp \
+    --enable-rubyinterp \
+    --enable-python3interp
 make
 sudo make install
 ```
