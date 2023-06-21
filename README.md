@@ -7,6 +7,7 @@
     + [安裝 vim](#安裝-vim)
     + [coc-nvim](#coc-nvim)
     + [格式化](#格式化)
+    + [Vimspector 除錯環境](#vimspector-除錯環境)
   - [新增 Nerd Fonts](#新增-nerd-fonts)
 * [鍵位](#鍵位)
   - [移動](#移動)
@@ -124,6 +125,26 @@ npm install -g npm
 
 ```shell
 apt install -y clang-format
+```
+
+#### Vimspector 除錯環境
+- 安裝除錯器
+  - debgpy 安裝所需
+
+  ```shell
+  pip install setuptools versioneer autopep8
+  ```
+
+- 安裝
+
+```vim
+VimspectorInstall debugpy vscode-cpptools CodeLLDB --verbose
+```
+
+or
+
+```shell
+pip install debgpy
 ```
 
 ### 新增 Nerd Fonts
@@ -380,27 +401,6 @@ apt install -y clang-format
 
 ### 代碼除錯
 #### [vimspector](https://github.com/puremourning/vimspector) 
-
-- 安裝除錯器
-  - debgpy 安裝所需
-
-  ```shell
-  pip install setuptools versioneer autopep8
-  ```
-
-- 安裝
-
-```vim
-VimspectorInstall debugpy vscode-cpptools CodeLLDB --verbose
-```
-
-or
-
-
-```shell
-pip install debgpy
-```
-
 - 除錯 
 
 | 快捷鍵        | 功能               |
