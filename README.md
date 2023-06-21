@@ -60,7 +60,7 @@
 ### 必備軟體安裝
 
 ```shell
-apt install -y git pip npm nodejs gdb ripgrep
+apt install -y git pip npm nodejs gdb ripgrep libncurses-dev
 ```
 
 #### 安裝 vim
