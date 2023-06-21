@@ -132,6 +132,7 @@ apt install -y clang-format
   - debgpy 安裝所需
 
   ```shell
+  export PATH="$HOME/.local/bin:$PATH"
   pip install setuptools versioneer autopep8
   ```
 
