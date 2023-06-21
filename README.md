@@ -129,10 +129,15 @@ apt install -y clang-format
 
 #### Vimspector 除錯環境
 - 安裝除錯器
+  - 在 `~/.bashrc` 文件的末尾添加以下行
+  
+  ```bash
+  export PATH="$HOME/.local/bin:$PATH"
+  ```
+  
   - debgpy 安裝所需
 
   ```shell
-  export PATH="$HOME/.local/bin:$PATH"
   pip install setuptools versioneer autopep8
   ```
 
@@ -140,12 +145,6 @@ apt install -y clang-format
 
 ```vim
 VimspectorInstall debugpy vscode-cpptools CodeLLDB --verbose
-```
-
-or
-
-```shell
-pip install debgpy
 ```
 
 ### 新增 Nerd Fonts
