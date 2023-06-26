@@ -66,26 +66,32 @@ apt install -y git pip npm nodejs gdb ripgrep
 
 #### 安裝 vim
 
-- 編譯依賴
+- 安裝編譯所需的依賴包
 ```shell
-sudo apt install -y libncurses5-dev libncurses-dev \
-    libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev \
-    libx11-dev libxtst-dev libxt-dev libsm-dev libxpm-dev
+sudo apt install -y lua5.4 liblua5.4-dev python3.10-dev python2-dev libperl-dev ruby-dev libxt-dev
 ```
 
 ```shell
 git clone --branch v8.2.5172 --depth 1 https://github.com/vim/vim.git
 cd vim/src
+# 配置時 --enable-fail-if-missing 可以檢查編譯所缺少的依賴
 ./configure --with-x \
-    --enable-multibyte \
     --enable-gui=auto \
     --with-features=huge \
+    --enable-cscope \
     --enable-luainterp \
     --enable-perlinterp \
     --enable-rubyinterp \
-    --enable-python3interp
-make
-sudo make install
+    --enable-pythoninterp \
+    --enable-python3interp \
+    --enable-terminal \
+    --enable-autoservername\
+    --enable-multibyte \
+    --enable-fail-if-missing \
+    --enable-fontset \
+    --disable-netbeans \
+    --enable-largefile
+make && sudo make install
 ```
 
 #### coc-nvim
