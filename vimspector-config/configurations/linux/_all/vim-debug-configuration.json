@@ -1,23 +1,8 @@
 {
   "configurations": {
-    "CodeLLDB": {
-      "adapter": "CodeLLDB",
-      "filetypes": [
-        "//Use for c++"
-      ],
-      "variables": {
-        "BUILDME": {
-          "shell": "g++ -o ${workspaceRoot}/${fileBasenameNoExtension} -g -std=c++17 ${workspaceRoot}/${fileBasename}"
-        }
-      },
-      "configuration": {
-        "request": "launch",
-        "program": "${workspaceRoot}/${fileBasenameNoExtension}",
-        "stopOnEntry": false
-      }
-    },
     "cpptools-gdb": {
       "adapter": "vscode-cpptools",
+      "default": true,
       "filetypes": [
         "cpp",
         "c",
@@ -26,12 +11,12 @@
       ],
       "variables": {
         "BUILDME": {
-          "shell": "g++ -o ${workspaceRoot}/${fileBasenameNoExtension} -g -std=c++17 ${workspaceRoot}/${fileBasename}"
+          "shell": "g++ -o ${workspaceRoot}/${fileBasenameNoExtension}.obj -g -std=c++17 ${workspaceRoot}/${fileBasename}"
         }
       },
       "configuration": {
         "request": "launch",
-        "program": "${workspaceRoot}/${fileBasenameNoExtension}",
+        "program": "${workspaceRoot}/${fileBasenameNoExtension}.obj",
         "stopAtEntry": true,
         "MIMode": "gdb",
         "setupCommands": [
@@ -41,24 +26,17 @@
             "ignoreFailures": true
           }
         ]
-      }
-    },
-    "cpptools-lldb": {
-      "adapter": "vscode-cpptools",
-      "filetypes": [
-        "//Can't Use"
-      ],
-      "variables": {
-        "BUILDME": {
-          "shell": "g++ -o ${workspaceRoot}/${fileBasenameNoExtension} -g -std=c++17 ${workspaceRoot}/${fileBasename}"
-        }
       },
-      "configuration": {
-        "request": "launch",
-        "program": "${workspaceRoot}/${fileBasenameNoExtension}",
-        "stopAtEntry": true,
-        "MIMode": "lldb",
-        "MIDebuggerPath": "/usr/bin/lldb-mi-9"
+      "breakpoints": {
+        "exception": {
+          "all": "",
+          "cpp_catch": "",
+          "cpp_throw": "",
+          "objc_catch": "",
+          "objc_throw": "",
+          "swift_catch": "",
+          "swift_throw": ""
+        }
       }
     },
     "debugpy": {
