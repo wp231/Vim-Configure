@@ -196,5 +196,8 @@
       ]
     }
   },
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "python.formatting.autopep8Args": [
+    "--max-line-length=120"
+  ]
 }
