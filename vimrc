@@ -87,7 +87,8 @@ let g:coc_global_extension = [
       \ 'coc-diagnostic',
       \ 'coc-webview',
       \ 'coc-markdown-preview-enhanced',
-      \ 'coc-translator'
+      \ 'coc-translator',
+      \ 'coc-java-debug'
       \ ]
 
 set encoding=UTF-8
@@ -901,6 +902,11 @@ function! s:GrepFromSelected(type)
   let @@ = saved_unnamed_register
   execute 'CocList --normal grep '.word
 endfunction
+
+"""""""""""""""""
+" coc-java-debug
+"""""""""""""""""
+nmap <F1> :CocCommand java.debug.vimspector.start<CR>
 
 """""""""""""""""
 " vim-autoformat
