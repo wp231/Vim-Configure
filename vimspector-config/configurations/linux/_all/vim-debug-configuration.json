@@ -4,14 +4,47 @@
       "adapter": "vscode-cpptools",
       "default": true,
       "filetypes": [
-        "cpp",
-        "c",
-        "objc",
-        "rust"
+        "cpp"
       ],
       "variables": {
         "BUILDME": {
           "shell": "g++ -o ${workspaceRoot}/${fileBasenameNoExtension}.obj -g -std=c++17 ${workspaceRoot}/${fileBasename}"
+        }
+      },
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/${fileBasenameNoExtension}.obj",
+        "stopAtEntry": true,
+        "MIMode": "gdb",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ]
+      },
+      "breakpoints": {
+        "exception": {
+          "all": "",
+          "cpp_catch": "",
+          "cpp_throw": "",
+          "objc_catch": "",
+          "objc_throw": "",
+          "swift_catch": "",
+          "swift_throw": ""
+        }
+      }
+    },
+    "cpptools-gdb-c": {
+      "adapter": "vscode-cpptools",
+      "default": true,
+      "filetypes": [
+        "c"
+      ],
+      "variables": {
+        "BUILDME": {
+          "shell": "gcc -o ${workspaceRoot}/${fileBasenameNoExtension}.obj -g ${workspaceRoot}/${fileBasename}"
         }
       },
       "configuration": {
